@@ -1,18 +1,31 @@
-import { Button, HStack } from "@chakra-ui/react";
-import { RiArrowRightLine, RiMailLine } from "react-icons/ri";
+import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
-      <HStack>
-        <Button colorPalette="teal" variant="solid">
-          <RiMailLine /> Email
-        </Button>
-        <Button colorPalette="teal" variant="outline">
-          Call us <RiArrowRightLine />
-        </Button>
-      </HStack>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main" `,
+          lg: `"nav nav" "aside main"`,
+        }}
+      >
+        <GridItem area="nav" bg="coral">
+          Navigation
+        </GridItem>
+
+        {useBreakpointValue({
+          base: null,
+          lg: (
+            <GridItem area="aside" bg="gold">
+              Aside
+            </GridItem>
+          ),
+        })}
+
+        <GridItem area="main" bg="dodgerblue">
+          Main
+        </GridItem>
+      </Grid>
     </div>
   );
 }
